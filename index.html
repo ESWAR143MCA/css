@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSS Preparation — Study Guide</title>
+  <meta name="description" content="A concise, modern, single‑file CSS preparation page with topics, summaries, examples, and practice tasks." />
+  <style>
+    :root{
+      --bg: #0b0f19;
+      --panel: #111827;
+      --muted: #94a3b8;
+      --text: #e5e7eb;
+      --brand: #60a5fa;
+      --accent: #34d399;
+      --warn: #fbbf24;
+      --code-bg: #0b1220;
+      --border: #1f2937;
+      --chip: #1f2a3c;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-lg: 22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 70% -20%, #13306533, transparent), var(--bg);
+      line-height:1.6;
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    .wrap{max-width:1200px; margin:0 auto; padding:14px 18px}
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      box-shadow: var(--shadow);
+    }
+    .title{
+      font-weight:700; letter-spacing:.3px; font-size:1.15rem;
+    }
+
+    .grid{
+      display:grid; gap:22px;
+      grid-template-columns: 300px 1fr;
+      padding:24px 18px 60px;
+      max-width:1200px; margin:0 auto;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      aside{position:static}
+    }
+
+    aside{
+      position:sticky; top:74px; height:calc(100dvh - 90px); overflow:auto;
+      padding:16px; border:1px solid var(--border); border-radius: var(--radius);
+      background: linear-gradient(180deg, #101623, #0e1522);
+      box-shadow: var(--shadow);
+    }
+    .search{
+      display:flex; align-items:center; gap:10px;
+      background:#0f1624; border:1px solid var(--border);
+      border-radius:12px; padding:8px 12px; margin-bottom:12px;
+    }
+    .search input{
+      width:100%; border:none; outline:none; background:transparent; color:var(--text);
+      font-size:.95rem;
+    }
+    .toc{
+      list-style:none; padding:0; margin:8px 0 0;
+    }
+    .toc li a{
+      display:block; padding:8px 10px; border-radius:10px;
+      color:var(--text);
+    }
+    .toc li a:hover{background:#0f1a2a}
+    .chip{
+      display:inline-block; padding:4px 10px; border-radius:999px;
+      background:var(--chip); border:1px solid var(--border); color:var(--muted);
+      font-size:.8rem; margin-right:6px; margin-bottom:6px;
+    }
+
+    main{
+      display:flex; flex-direction:column; gap:22px;
+    }
+    section.card{
+      background: linear-gradient(180deg, #0f1626, #0c1220);
+      border:1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding:18px 18px 20px;
+      box-shadow: var(--shadow);
+    }
+    h2{margin:6px 0 6px; font-size:1.25rem}
+    h3{margin:12px 0 8px; font-size:1.05rem; color:#dbeafe}
+    p.lead{color:#cbd5e1; margin-top:0}
+    details{
+      border:1px solid var(--border);
+      background:#0b1220; border-radius:14px; padding:10px 12px; margin:10px 0;
+    }
+    details > summary{
+      cursor:pointer; font-weight:600; color:#c7d2fe;
+    }
+
+    pre{
+      background:var(--code-bg);
+      padding:12px 14px; border-radius:12px; overflow:auto;
+      border:1px solid var(--border);
+      position:relative;
+    }
+    code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size:.9rem}
+    .copy{
+      position:absolute; top:8px; right:8px;
+      border:1px solid var(--border); background:#0e1726;
+      color:var(--text); border-radius:10px; padding:6px 10px; cursor:pointer;
+    }
+    .badges{margin:10px 0}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px; border:1px solid var(--border);
+      background:#0f1626; margin:4px 6px 0 0; font-size:.85rem; color:#cbd5e1;
+    }
+    .pill small{opacity:.7}
+    .tips{
+      border-left:3px solid var(--accent); padding-left:12px; color:#d1fae5
+    }
+    .warn{
+      border-left:3px solid var(--warn); padding-left:12px; color:#fde68a
+    }
+    footer{
+      opacity:.8; font-size:.9rem; padding:26px 18px; border-top:1px solid var(--border);
+      background: #0b0f19;
+    }
+    .kbd{
+      border:1px solid var(--border); background:#0e1726; padding:1px 6px; border-radius:6px; font-family:inherit
+    }
+    .flex{display:flex; gap:10px; flex-wrap:wrap}
+    .center{display:flex; align-items:center; gap:12px}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--border); background:#0f1626; color:var(--text);
+      padding:10px 12px; border-radius:12px; cursor:pointer; text-decoration:none
+    }
+    .btn:hover{background:#0f1a2a}
+    .note{color:var(--muted); font-size:.95rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap center">
+      <div class="logo" aria-hidden="true"></div>
+      <div class="title">CSS Preparation — Study Guide</div>
+      <span class="chip">Single File</span>
+      <span class="chip">Interview‑Ready</span>
+      <span class="chip">Examples Included</span>
+      <a class="btn" href="#practice">Jump to Practice</a>
+    </div>
+  </header>
+
+  <div class="grid">
+    <aside>
+      <div class="search" role="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 21l-3.5-3.5M10 18a8 8 0 1 1 0-16a8 8 0 0 1 0 16"/></svg>
+        <input id="filter" placeholder="Filter topics (e.g., grid, flex, box)"/>
+      </div>
+      <ul class="toc" id="toc">
+        <!-- Will be auto-filled by JS using headings -->
+      </ul>
+      <div class="badges" aria-label="Key topics">
+        <span class="chip">Selectors</span>
+        <span class="chip">Box Model</span>
+        <span class="chip">Flexbox</span>
+        <span class="chip">Grid</span>
+        <span class="chip">Positioning</span>
+        <span class="chip">Responsive</span>
+        <span class="chip">Animation</span>
+        <span class="chip">Specificity</span>
+      </div>
+    </aside>
+
+    <main id="content">
+      <section class="card" id="overview">
+        <h2>Overview</h2>
+        <p class="lead">
+          Use this page to revise CSS quickly: skim summaries, expand for details, copy examples,
+          and try guided practice. Everything is self‑contained — no internet needed.
+        </p>
+        <div class="flex">
+          <span class="pill">Time‑Saver <small>Concise bullets</small></span>
+          <span class="pill">Hands‑On <small>Copyable snippets</small></span>
+          <span class="pill">Foundation→Advanced <small>Clear progression</small></span>
+        </div>
+      </section>
+
+      <section class="card" id="fundamentals" data-topic="basics,syntax,selectors,combinators">
+        <h2>1) Fundamentals: Syntax & Selectors</h2>
+        <p class="note">Know how CSS targets elements and resolves conflicts.</p>
+        <details open>
+          <summary>Cheat Sheet</summary>
+          <ul>
+            <li><strong>Syntax:</strong> <code>selector { property: value; }</code></li>
+            <li><strong>Selector Types:</strong> universal <code>*</code>, type <code>div</code>, class <code>.btn</code>, id <code>#app</code>, attribute <code>[data-x]</code>, pseudo‑class <code>:hover</code>, pseudo‑element <code>::before</code></li>
+            <li><strong>Combinators:</strong> descendant <code>div p</code>, child <code>ul &gt; li</code>, adjacent <code>h1 + p</code>, general sibling <code>h1 ~ p</code></li>
+            <li><strong>Specificity:</strong> inline &gt; id &gt; class/attr/pseudo‑class &gt; type; later wins on tie.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Examples</summary>
+<pre><button class="copy" data-copy="code1">Copy</button><code id="code1">/* Attribute, pseudo-class, and combinator example */
+input[type="email"]:focus + .hint { opacity: 1; }
+
+/* Specificity demo */
+#hero .btn.primary { background: royalblue; }
+/* overrides */
+.btn.primary { background: steelblue; }</code></pre>
+        </details>
+      </section>
+
+      <section class="card" id="box-model" data-topic="box model,margin,padding,border,overflow">
+        <h2>2) Box Model</h2>
+        <p class="note">Master content vs padding vs border vs margin. Prefer <code>box-sizing: border-box;</code>.</p>
+        <details open>
+          <summary>Diagram & Tips</summary>
+          <p class="tips">
+            Set <code>*{box-sizing:border-box}</code> to make width/height include padding+border.
+            Use <code>overflow</code> to control scroll/clip; avoid margin collapse surprises by using padding on parent containers.
+          </p>
+        </details>
+<details>
+  <summary>Example</summary>
+<pre><button class="copy" data-copy="code2">Copy</button><code id="code2">*{ box-sizing: border-box; }
+.card{ width: 300px; padding: 16px; border: 2px solid #1f2937; }</code></pre>
+</details>
+      </section>
+
+      <section class="card" id="layout" data-topic="layout,display,position,flex,grid,flow">
+        <h2>3) Layout: Display, Flow & Positioning</h2>
+        <p class="note">Choose the right layout mode: normal flow, flexbox, grid, or positioning.</p>
+        <details open>
+          <summary>Position</summary>
+          <ul>
+            <li><code>static</code> (default), <code>relative</code> (offset, anchor for absolute), <code>absolute</code> (removed from flow), <code>fixed</code>, <code>sticky</code>.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Flexbox — 1D alignment</summary>
+<pre><button class="copy" data-copy="code3">Copy</button><code id="code3">.row{
+  display:flex;
+  gap:12px;
+  justify-content:space-between; /* main axis */
+  align-items:center;            /* cross axis */
+  flex-wrap:wrap;
+}
+.col{ flex: 1 1 200px; }</code></pre>
+        </details>
+        <details>
+          <summary>Grid — 2D control</summary>
+<pre><button class="copy" data-copy="code4">Copy</button><code id="code4">.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+/* Named areas */
+.layout{
+  display:grid;
+  grid-template:
+    "head head" auto
+    "side main" 1fr / 260px 1fr;
+}</code></pre>
+        </details>
+      </section>
+
+      <section class="card" id="typography" data-topic="fonts,typography,line-height,letter-spacing,web fonts,variable fonts">
+        <h2>4) Typography</h2>
+        <details open>
+          <summary>Key Rules</summary>
+          <ul>
+            <li>Use system stacks or variable fonts to reduce layout shift.</li>
+            <li>Comfortable reading: <code>line-height: 1.5–1.8</code>, 60–75 chars/line.</li>
+            <li>Use <code>rem</code> for scalable type; reserve <code>em</code> for component-relative sizing.</li>
+          </ul>
+        </details>
+<details>
+  <summary>Snippet</summary>
+<pre><button class="copy" data-copy="code5">Copy</button><code id="code5">:root{ font-size: 16px; }
+h1{ font-size: clamp(1.75rem, 3vw, 2.25rem); }
+p{ line-height: 1.65; letter-spacing: .2px; }</code></pre>
+</details>
+      </section>
+
+      <section class="card" id="colors" data-topic="colors,contrast,variables,theme,dark mode">
+        <h2>5) Color, Variables & Theming</h2>
+        <p class="note">Use CSS variables for themes; ensure contrast (WCAG AA+).</p>
+        <details open>
+          <summary>Variables + Dark Mode</summary>
+<pre><button class="copy" data-copy="code6">Copy</button><code id="code6">:root{ --brand: #2563eb; --bg: #ffffff; --text:#0b1220; }
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0b1220; --text:#e5e7eb; }
+}
+body{ background: var(--bg); color: var(--text); }</code></pre>
+        </details>
+      </section>
+
+      <section class="card" id="responsive" data-topic="responsive,media queries,container queries,clamp,fluid">
+        <h2>6) Responsive Design</h2>
+        <details open>
+          <summary>Modern Approach</summary>
+          <ul>
+            <li>Use fluid sizing with <code>clamp()</code> and flexible layouts.</li>
+            <li>Media queries when necessary; prefer content‑driven container queries.</li>
+          </ul>
+        </details>
+<details>
+  <summary>Examples</summary>
+<pre><button class="copy" data-copy="code7">Copy</button><code id="code7">.card{ padding: clamp(12px, 2vw, 24px); }
+@container (min-width: 500px){
+  .tile{ grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 640px){
+  nav { display:none; }
+}</code></pre>
+</details>
+      </section>
+
+      <section class="card" id="effects" data-topic="transitions,animations,keyframes,transform">
+        <h2>7) Transitions & Animations</h2>
+        <details open>
+          <summary>Smooth Interactions</summary>
+<pre><button class="copy" data-copy="code8">Copy</button><code id="code8">.btn{ transition: transform .2s ease, box-shadow .2s ease; }
+.btn:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+
+@keyframes pulse{ from{ scale:1 } 50%{ scale:1.04 } to{ scale:1 } }
+.badge{ animation: pulse 2s infinite }</code></pre>
+        </details>
+      </section>
+
+      <section class="card" id="best" data-topic="best practices,architecture,bem,utility,performance">
+        <h2>8) Best Practices & Architecture</h2>
+        <details open>
+          <summary>Guidelines</summary>
+          <ul>
+            <li>Scope styles by component (BEM or utility-first).</li>
+            <li>Minimize deep selectors; prefer single‑class hooks.</li>
+            <li>Use logical properties (<code>margin-inline</code>, <code>padding-block</code>) for RTL support.</li>
+            <li>Measure: DevTools <span class="kbd">Performance</span>, <span class="kbd">Coverage</span>.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="specificity" data-topic="specificity,cascade,layer,@layer,reset">
+        <h2>9) Cascade Layers & Specificity Control</h2>
+        <details open>
+          <summary>@layer + Reset</summary>
+<pre><button class="copy" data-copy="code9">Copy</button><code id="code9">@layer reset, base, components, utilities;
+
+@layer reset{
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{ margin:0 }
+}
+@layer components{
+  .btn{ padding:.6rem 1rem; border-radius:.6rem }
+}
+@layer utilities{
+  .mt-2{ margin-top:.5rem }
+}</code></pre>
+        </details>
+      </section>
+
+      <section class="card" id="misc" data-topic="units,images,filters,shadows,z-index,variable fonts">
+        <h2>10) Misc Essentials</h2>
+        <details open>
+          <summary>Quick Hits</summary>
+          <ul>
+            <li><strong>Units:</strong> <code>rem</code> (root), <code>em</code> (relative), <code>vh/vw</code> (viewport), <code>fr</code> (grid).</li>
+            <li><strong>Images:</strong> <code>object-fit</code>, <code>aspect-ratio</code>, <code>border-radius</code>, <code>clip-path</code>.</li>
+            <li><strong>Stacking:</strong> new stacking context via <code>position</code> + <code>z-index</code>, <code>opacity</code>, <code>transform</code>, <code>filter</code>.</li>
+          </ul>
+        </details>
+<details>
+  <summary>Snippet</summary>
+<pre><button class="copy" data-copy="code10">Copy</button><code id="code10">.avatar{
+  width:100px; aspect-ratio:1; object-fit:cover; border-radius:50%;
+  overflow:hidden;
+}</code></pre>
+</details>
+      </section>
+
+      <section class="card" id="interview" data-topic="interview,questions,faqs,explain">
+        <h2>11) Interview Q&A (Rapid)</h2>
+        <ul>
+          <li>Explain the box model and how <code>box-sizing</code> changes layout.</li>
+          <li>Flexbox vs Grid—when choose which?</li>
+          <li>How does specificity resolve conflicts? What are cascade layers?</li>
+          <li>Difference between <code>em</code> and <code>rem</code>. When to use <code>clamp()</code>?</li>
+          <li>What causes layout thrashing? How to mitigate?</li>
+          <li>What is a stacking context? Common triggers?</li>
+        </ul>
+      </section>
+
+      <section class="card" id="practice" data-topic="practice,exercises,projects,tasks,assignments">
+        <h2>12) Practice Tasks</h2>
+        <ol>
+          <li><strong>Build a pricing grid:</strong> 3–4 cards using CSS Grid with <code>repeat(auto-fit,minmax())</code>.</li>
+          <li><strong>Navbar + hero:</strong> Sticky header, flexbox alignment, responsive with <code>clamp()</code>.</li>
+          <li><strong>Image gallery:</strong> Masonry-like grid, <code>object-fit</code>, hover transitions.</li>
+          <li><strong>Theme toggle:</strong> Implement CSS variables and a dark/light toggle.</li>
+          <li><strong>Component audit:</strong> Refactor nested selectors into BEM or utility classes.</li>
+        </ol>
+<details open>
+  <summary>Starter HTML</summary>
+<pre><button class="copy" data-copy="code11">Copy</button><code id="code11">&lt;div class="pricing grid"&gt;
+  &lt;article class="card"&gt;Basic&lt;/article&gt;
+  &lt;article class="card featured"&gt;Pro&lt;/article&gt;
+  &lt;article class="card"&gt;Team&lt;/article&gt;
+&lt;/div&gt;</code></pre>
+</details>
+      </section>
+
+      <section class="card" id="resources" data-topic="resources,cheatsheet,links,mdn,devtools">
+        <h2>13) Quick Reference</h2>
+        <ul>
+          <li><strong>DevTools:</strong> Layout panel for Grid/Flex, Performance for animations.</li>
+          <li><strong>MDN:</strong> Definitive reference for properties and values.</li>
+          <li><strong>Accessibility:</strong> Test contrast and focus states; respect <code>prefers-reduced-motion</code>.</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="wrap">
+    <div>Made for quick CSS prep. Portable. Print-friendly. 💙</div>
+    <div class="note">Tip: Press <span class="kbd">Ctrl</span> + <span class="kbd">F</span> to search, or use the sidebar filter.</div>
+  </footer>
+
+  <script>
+    // Build TOC from h2 elements
+    const toc = document.getElementById('toc');
+    const sections = [...document.querySelectorAll('main section.card')];
+    sections.forEach(sec => {
+      const h2 = sec.querySelector('h2');
+      if(!h2) return;
+      const id = sec.id || h2.textContent.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      sec.id = id;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = h2.textContent;
+      a.dataset.topic = (sec.getAttribute('data-topic')||'').toLowerCase();
+      li.appendChild(a);
+      toc.appendChild(li);
+    });
+
+    // Filter topics by keywords
+    const filter = document.getElementById('filter');
+    filter.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      const links = toc.querySelectorAll('a');
+      links.forEach(a => {
+        const match = a.textContent.toLowerCase().includes(q)
+          || (a.dataset.topic || '').includes(q);
+        a.parentElement.style.display = match ? '' : 'none';
+      });
+      sections.forEach(sec => {
+        const keys = (sec.getAttribute('data-topic')||'').toLowerCase();
+        const match = sec.querySelector('h2').textContent.toLowerCase().includes(q) || keys.includes(q);
+        sec.style.display = q ? (match ? '' : 'none') : '';
+      });
+    });
+
+    // Copy buttons for code blocks
+    document.querySelectorAll('button.copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-copy');
+        const code = document.getElementById(id)?.innerText || '';
+        try{
+          await navigator.clipboard.writeText(code);
+          const old = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(()=> btn.textContent = old, 1200);
+        }catch{ alert('Copy failed'); }
+      });
+    });
+
+    // Respect reduced motion
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('*').forEach(el=> el.style.scrollBehavior='auto');
+    }
+  </script>
+</body>
+</html>
