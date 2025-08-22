@@ -1,0 +1,27 @@
+h1{
+    color: whitesmoke;
+    text-align: center;
+}
+
+
+span {
+    background: linear-gradient(orange, red, blue, grey, purple, white);
+    -webkit-background-clip: text ;   /* Chrome, Safari */
+    -moz-background-clip: text;      /* Firefox */
+    color: transparent;              /* hide normal text color */
+}
+
+
+.myname{
+    color: black;  
+    background-color: blue;
+    background-image: linear-gradient(green orange);
+}
+body{
+ 
+   /* background-image: linear-gradient(to right, green, orange); */
+/* background-image: url('../images/Eswar.jpeg');
+ background-size: auto; */ 
+ background: radial-gradient( black , white,black,white);
+ 
+}
