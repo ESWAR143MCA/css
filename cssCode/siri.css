@@ -1,12 +1,5 @@
 
-.bangaram{
-    color: red;
-    font-size: 50px;
-    color: transparent;
-    background-image: linear-gradient(grey, white,blue,orange,purple);
-    background-clip: text;
-}
-    body{
+ body{
     background-color: pink;
     text-align: center;
     margin: 50px 50px;
@@ -18,20 +11,27 @@ img{
     border-radius: 12%;
     
 }
-.bujji{
+.ommo{
     font-size: 60px;
     font-style: italic; 
      color: rgb(201, 15, 46);
 }
-.dhyam{
+.oppo{
     font-size: 70px;
     font-style: italic;
     color: rgb(201, 15, 46);
 }
-h1{
-    text-align: center;
+.oyee{
+color: black;
 }
-.love{
-    color: black
-    
+.ore{
+    color: rgb(66, 3, 4);
+}
+.opo{
+    color: red;
+    font-size: 60px;
+    color: transparent;
+    background-image: linear-gradient(rgb(98, 30, 30), rgb(63, 48, 48),blue,rgb(96, 2, 2),rgb(232, 222, 232));
+    background-clip: text;
+}
 }

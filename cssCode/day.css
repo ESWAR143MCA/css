@@ -1,0 +1,25 @@
+.img2{
+    width: 400px;
+    height: 400px;
+    border-radius: 20%;
+    float: left;
+
+}
+.img3{
+    width: 400px;
+    height: 400px;
+    border-radius: 20%;
+    float: right;
+
+}
+.pa{
+    text-align: justify;
+    font-size: 30px;
+}
+body{
+    background-color: grey;
+}
+.ra{
+    text-align: justify;
+    font-size: 60px;
+}

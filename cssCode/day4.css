@@ -1,0 +1,23 @@
+h1{
+   padding: 20px; 
+  margin: 5px;  
+}
+h2{
+    padding: 20px;
+margin: 5px;
+}
+s1{
+    color: blue;
+}
+body{
+    height: 100vh;
+    background-color: darkslategrey;
+    text-align: center;
+    justify-content: center;
+    margin: 0%;
+}
+.div{
+    border: 2px solid red;
+    width: max-content;
+    border-radius: 0%;
+}
