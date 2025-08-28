@@ -5,9 +5,14 @@
     margin: 50px 50px;
     justify-content: center;
 }
+.Eswar{
+    height: 800px;
+    width: 800px;
+    border-radius: 12%;
+}
 img{
-    height: 450px;
-    width: 450px;
+    height: 400px;
+    width: 400px;
     border-radius: 12%;
     
 }
@@ -15,11 +20,13 @@ img{
     font-size: 60px;
     font-style: italic; 
      color: rgb(201, 15, 46);
+     text-align: justify;
 }
 .oppo{
     font-size: 70px;
     font-style: italic;
     color: rgb(201, 15, 46);
+    text-align: justify;
 }
 .oyee{
 color: black;
